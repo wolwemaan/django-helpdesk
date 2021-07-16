@@ -26,7 +26,7 @@ def get_user(username='helpdesk.staff',
 
 def reload_urlconf(urlconf=None):
 
-    from django.utils import six
+    import six
     if six.PY2:
         from imp import reload
     else:

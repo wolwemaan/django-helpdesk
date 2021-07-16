@@ -25,7 +25,7 @@ from django.utils.html import escape
 from django import forms
 from django.utils import timezone
 
-from django.utils import six
+import six
 
 from helpdesk.forms import (
     TicketForm, UserSettingsForm, EmailIgnoreForm, EditTicketForm, TicketCCForm,
