@@ -15,7 +15,7 @@ from django.db import models
 from django.conf import settings
 from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _, ugettext
-from six import python_2_unicode_compatible
+from six import PY2, python_2_unicode_compatible
 from io import StringIO
 import re
 
@@ -1129,7 +1129,7 @@ class UserSettings(models.Model):
         except ImportError:
             import cPickle as pickle
         from helpdesk.lib import b64encode
-        if six.PY2:
+        if PY2:
             self.settings_pickled = b64encode(pickle.dumps(data))
         else:
             self.settings_pickled = b64encode(pickle.dumps(data)).decode()
@@ -1142,7 +1142,7 @@ class UserSettings(models.Model):
             import cPickle as pickle
         from helpdesk.lib import b64decode
         try:
-            if six.PY2:
+            if PY2:
                 return pickle.loads(b64decode(str(self.settings_pickled)))
             else:
                 return pickle.loads(b64decode(self.settings_pickled.encode('utf-8')))
